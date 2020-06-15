@@ -43,7 +43,7 @@ class SeleniumMiddleware:
             driver_klass = Firefox
 
             driver_kwargs['user_agents'] = user_agents
-            driver_kwargs['change_user_agent_after'] = change_user_agent_after,
+            driver_kwargs['change_user_agent_after'] = change_user_agent_after
 
         else:
             driver_klass = Chrome
@@ -136,7 +136,7 @@ class SeleniumMiddleware:
         )
 
         crawler.signals.connect(middleware.spider_closed, signals.spider_closed)
-        
+
         return middleware
 
     def process_request(self, request, spider):
@@ -147,17 +147,10 @@ class SeleniumMiddleware:
         self.driver.get(request.url)
 
         for cookie_name, cookie_value in request.cookies.items():
-            self.driver.add_cookie(
-                {
-                    'name': cookie_name,
-                    'value': cookie_value
-                }
-            )
+            self.driver.add_cookie({'name': cookie_name, 'value': cookie_value})
 
         if request.wait_until:
-            WebDriverWait(self.driver, request.wait_time).until(
-                request.wait_until
-            )
+            WebDriverWait(self.driver, request.wait_time).until(request.wait_until)
 
         if request.screenshot:
             request.meta['screenshot'] = self.driver.get_screenshot_as_png()
