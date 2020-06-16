@@ -103,7 +103,7 @@ class SeleniumMiddleware:
         change_ip_after = crawler.settings.get('SELENIUM_DRIVER_CHANGE_IP_AFTER', 42) 
         
         user_agents = crawler.settings.get('SELENIUM_DRIVER_USER_AGENTS', [])
-        change_user_agent_after = crawler.settings.get('SELENIUM_DRIVER_USER_AGENTS', 0)
+        change_user_agent_after = crawler.settings.get('SELENIUM_DRIVER_CHANGE_USER_AGENT_AFTER', 0)
         
         time_between_calls = crawler.settings.get('SELENIUM_DRIVER_TIME_BETWEEN_CALLS', 0.25)
         random_delay = crawler.settings.get('SELENIUM_DRIVER_RANDOM_DELAY', True)
