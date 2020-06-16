@@ -133,6 +133,3 @@ class SeleniumMiddlewareTestCase(BaseScrapySeleniumTestCase):
             html_response.selector.xpath('//title/text()').extract_first(),
             'scrapy_selenium'
         )
-
-    def test_load_cookies(self):
-        
