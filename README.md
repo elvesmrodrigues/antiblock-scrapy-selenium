@@ -28,7 +28,7 @@ pip install antiblock-scrapy-selenium
 ```
 ## Configuração
 
-Siga os passos de configuração do Tor em [antiblock-selenium](https://github.com/elvesrodrigues/antiblock-selenium).
+Siga os passos de configuração do Tor em [antiblock-selenium](https://github.com/elvesrodrigues/antiblock-selenium#configurando-tor).
 
 Os navegadores suportados são:
 - Chrome
@@ -45,7 +45,7 @@ Os navegadores suportados são:
         'antiblock_scrapy_selenium.SeleniumMiddleware': 800
     }
     ```
-- Adicione o navegador a ser usado, o local da executável do driver do navegador e os argumentos a serem passados para o driver:
+- Adicione o navegador a ser usado, o local da executável do driver e os argumentos a serem passados:
     ```python
     #settings.py
     from shutil import which
@@ -81,7 +81,7 @@ Os navegadores suportados são:
             def parse(self, response):
                 pass
         ```
-- Utilize as demais funcionalidades do `scrapy-selenium` normalmente, disponíveis [aqui](https://github.com/clemfromspace/scrapy-selenium).
+- Utilize as demais funcionalidades do `scrapy-selenium` normalmente, disponíveis [aqui](https://github.com/clemfromspace/scrapy-selenium#additional-arguments).
 
 > **O parâmetro SELENIUM_COMMAND_EXECUTOR do scrapy-selenium não é suportada.**
 
@@ -104,10 +104,12 @@ SELENIUM_DRIVER_ALLOW_REUSE_IP_AFTER = 5
 
 #### Rotação de user-agents
 
+> Suporte a rotação de user-agent apenas para Firefox.
+
 Parâmetros:
 
 - `SELENIUM_DRIVER_USER_AGENTS`: Lista de user-agents a ser rotacionada.
-- `SELENIUM_DRIVER_CHANGE_USER_AGENT_AFTER`: Quando o user-agent deverá alterado `(Default 0 - user-agent não muda)`
+- `SELENIUM_DRIVER_CHANGE_USER_AGENT_AFTER`: Quando o user-agent deverá se alterado `(Default 0 - user-agent não muda)`
 
 Exemplo:
 
@@ -117,7 +119,6 @@ Exemplo:
 SELENIUM_DRIVER_USER_AGENTS = ['user-agent-1', 'user-agent-2', ... , 'user-agent-n']
 SELENIUM_DRIVER_CHANGE_USER_AGENT_AFTER = 721 #Requisições com mesmo user-agent Ex.: 10, 20, 30... 
 ```
-> Suporte a rotação de user-agent apenas para Firefox.
 
 #### Atrasos entre requisições
 
@@ -138,12 +139,12 @@ SELENIUM_DRIVER_RANDOM_DELAY = False # Tempo mínimo fixo entre requisições
 #### Gerência de Cookies
 
 Parâmetros:
-- `SELENIUM_DRIVER_PERSIST_COOKIES_WHEN_CLOSE`: Se quando o driver é fechado os cookies deles serão salvos em SELENIUM_DRIVER_LOCATION_OF_COOKIES `(Default False)`
-- `SELENIUM_DRIVER_RELOAD_COOKIES_WHEN_START`: Se ao iniciar, cookies salvos em SELENIUM_DRIVER_LOCATION_OF_COOKIES serão recarregados `(Default False)`
-    - Se `True`, é necessário especificar o domínio dos cookies em SELENIUM_DRIVER_COOKIE_DOMAIN 
-- `SELENIUM_DRIVER_LOCATION_OF_COOKIES`: Local onde os cookies serão salvos ou buscados. `(Default 'cookies.pkl')` 
+- `SELENIUM_DRIVER_PERSIST_COOKIES_WHEN_CLOSE`: Se quando o driver é fechado os cookies deles serão salvos `(Default False)`
+- `SELENIUM_DRIVER_RELOAD_COOKIES_WHEN_START`: Se ao iniciar, cookies salvos na última sessão serão recarregados `(Default False)`
+    - Se `True`, é necessário especificar o domínio dos cookies em `SELENIUM_DRIVER_COOKIE_DOMAIN` 
+- `SELENIUM_DRIVER_LOCATION_OF_COOKIES`: Local onde os cookies serão salvos. `(Default 'cookies.pkl')` 
 - `SELENIUM_DRIVER_LOAD_COOKIES`: Lista de cookies a serem carregados (Default [] - Lista vazia)
-    - Se a lista não vazia for passada, é necessário especificar o domínio dos cookies em SELENIUM_DRIVER_COOKIE_DOMAIN 
+    - Se a lista não vazia for passada, é necessário especificar o domínio dos cookies em `SELENIUM_DRIVER_COOKIE_DOMAIN` 
 - `SELENIUM_DRIVER_COOKIE_DOMAIN`: Domínio onde os cookies são válidos.  
 
 Exemplo - Persistindo cookies:
